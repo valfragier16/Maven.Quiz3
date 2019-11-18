@@ -1,11 +1,14 @@
 package rocks.zipcode.io.quiz3.fundamentals;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @author leon on 09/12/2018.
  */
 public class StringUtils {
+    static HashSet<String> st = new HashSet<>();
+
 
     public static String capitalizeNthCharacter(String str, Integer indexToCapitalize) {
         char[] arr = str.toCharArray();
@@ -25,6 +28,7 @@ public class StringUtils {
     public static String[] getAllSubStrings(String string) {
         return null;
     }
+
 
 
     public static Integer getNumberOfSubStrings(String input){
