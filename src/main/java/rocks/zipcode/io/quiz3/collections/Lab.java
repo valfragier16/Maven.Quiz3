@@ -1,10 +1,12 @@
 package rocks.zipcode.io.quiz3.collections;
 
+import java.util.List;
+
 /**
  * @author leon on 10/12/2018.
  */
 public class Lab {
-    private String labName;
+    private String name;
     private LabStatus labStatus;
 
     public Lab() {
@@ -12,11 +14,11 @@ public class Lab {
     }
 
     public Lab(String labName) {
-        this.labName = labName;
+        this.name = labName;
     }
 
     public String getName() {
-        return this.labName;
+        return name;
     }
 
     public void setStatus(LabStatus labStatus) {
@@ -26,4 +28,10 @@ public class Lab {
     public LabStatus getStatus() {
         return this.labStatus;
     }
+
+    @Override
+    public String toString() {
+        return name + " > " + labStatus.name();
+    }
+
 }

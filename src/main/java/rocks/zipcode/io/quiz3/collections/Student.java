@@ -7,46 +7,51 @@ import java.util.*;
  */
 public class Student {
     // encapsulate and manage a composite List of Lab objects.
-    private Map<Lab, LabStatus> labs = new HashMap<>();
-    Set set = labs.entrySet();
+    List<Lab> labs;
 
     // Nullary constructor
     public Student() {
-        this(null);
+        labs = new ArrayList<>();
     }
 
     public Student(List<Lab> labs) {
+        this.labs = labs;
     }
     public Lab getLab(String labName) {
-        Iterator k = set.iterator();
-        Lab value = null;
-        while (k.hasNext()) {
-            Map.Entry me = (Map.Entry) k.next();
-            Lab lab = (Lab) me.getKey();
-
+        for (Lab lab : labs) {
             if (labName.equals(lab.getName())) {
-                value = lab;
+                return lab;
             }
         }
-        return value;
+        return null;
     }
 
     public void setLabStatus(String labName, LabStatus labStatus) {
-        Lab lab = getLab(labName);
-        if (lab != null) {
-            this.labs.put(lab, labStatus);
+        if (getLab(labName) != null ){
+            getLab(labName).setStatus(labStatus);
         } else {
             throw new UnsupportedOperationException("Lab not forked");
         }
     }
 
     public void forkLab(Lab lab) {
-        this.labs.put(lab, LabStatus.PENDING);
+        labs.add(lab);
+        lab.setStatus(LabStatus.PENDING);
     }
 
     public LabStatus getLabStatus(String labName) {
-        Lab lab = getLab(labName);
-        return this.labs.get(lab);
+        return getLab(labName).getStatus();
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = labs.size() - 1; i >= 0; i--) {
+            s += labs.get(i).toString();
+            if(i != 0) {
+                s += "\n";
+            }
+        }
+        return s;
+    }
 }

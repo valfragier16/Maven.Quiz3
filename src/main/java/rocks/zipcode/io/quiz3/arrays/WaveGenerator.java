@@ -1,40 +1,24 @@
 package rocks.zipcode.io.quiz3.arrays;
 
+import rocks.zipcode.io.quiz3.fundamentals.StringUtils;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author leon on 09/12/2018.
  */
 public class WaveGenerator {
-    public static String[] wave(String str) {
-        ArrayList<String> waves = new ArrayList<>();
-        String temp =  str.toLowerCase();
-        boolean visisted = false;
 
-        for(int i = 0; i < str.length(); i++){
-            StringBuilder sb = new StringBuilder();;
-            for(int j = 0; j <str.length(); j++){
-                if(i==j){
-                    if(Character.isAlphabetic(temp.charAt(j))){
-                        sb.append(Character.toUpperCase(temp.charAt(j)));
-                    }
-                    else {
-                        visisted = true;
-                    }
-                }
-                else {
-                    sb.append(temp.charAt(j));
-                }
-            }
-            if(visisted){
-                visisted = false;
-            }
-            else {
-                waves.add(sb.toString());
+    public static String[] wave(String str) {
+        List<String> waves = new ArrayList<>();
+        str = str.toLowerCase();
+
+        for (int i = 0; i < str.length(); i++) {
+            if(Character.isAlphabetic(str.charAt(i))) {
+                waves.add(StringUtils.capitalizeNthCharacter(str, i));
             }
         }
-        String[] result = waves.toArray(new String[waves.size()]);
-
-        return result;
+        return waves.toArray(new String[0]);
     }
 }
